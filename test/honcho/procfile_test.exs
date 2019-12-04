@@ -10,6 +10,12 @@ defmodule Honcho.ProcfileTest do
       |> assert_eq({:error, :empty_procfile})
     end
 
+    test "is an error when all lines are empty" do
+      "test/fixtures/procfiles/empty_lines"
+      |> Procfile.read()
+      |> assert_eq({:error, :empty_procfile})
+    end
+
     test "can read a single service" do
       "test/fixtures/procfiles/single"
       |> Procfile.read()
@@ -27,6 +33,12 @@ defmodule Honcho.ProcfileTest do
            "third_thing" => ~w{command with a long string of arguments}
          }}
       )
+    end
+
+    test "strips empty lines" do
+      "test/fixtures/procfiles/with_line_break"
+      |> Procfile.read()
+      |> assert_eq({:ok, %{"name_of_thing" => ~w{some command to run}}})
     end
 
     test "is an error if a service name is duplicated" do

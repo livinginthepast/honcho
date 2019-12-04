@@ -31,4 +31,8 @@ defmodule Honcho.Test.Extra.Assertions do
     assert left == right
     left
   end
+
+  def assert_matches(left, right) do
+    assert left =~ right
+  end
 end

@@ -3,8 +3,8 @@ defmodule Honcho.SimpleCase do
 
   using do
     quote do
-      import Honcho.Test.Extra.Assertions
       import ExUnit.Assertions
+      import Honcho.Test.Extra.Assertions
     end
   end
 end
