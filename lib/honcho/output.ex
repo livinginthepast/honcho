@@ -2,7 +2,8 @@ defmodule Honcho.Output do
   alias Honcho.Color
 
   @colors %{
-    info: :cyan
+    info: :cyan,
+    warn: :yellow
   }
 
   def usage() do
@@ -12,6 +13,8 @@ defmodule Honcho.Output do
     puts()
     puts("  start - starts processes defined in Procfile")
   end
+
+  def warn(string), do: puts(string, :warn)
 
   def puts(), do: IO.puts("")
   def puts(string), do: puts(string, :info)

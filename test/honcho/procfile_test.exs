@@ -46,5 +46,11 @@ defmodule Honcho.ProcfileTest do
       |> Procfile.read()
       |> assert_eq({:error, :malformed_service})
     end
+
+    test "is an error if the file is not found" do
+      "test/fixtures/procfiles/no_file"
+      |> Procfile.read()
+      |> assert_eq({:error, :enoent})
+    end
   end
 end

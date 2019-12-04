@@ -9,7 +9,7 @@ defmodule Honcho do
 
   def main([cmd | args]) do
     cmd
-    |> Honcho.Command.find()
+    |> Honcho.Subcommand.find()
     |> run(args)
   end
 

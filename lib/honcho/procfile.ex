@@ -5,14 +5,15 @@ defmodule Honcho.Procfile do
   end
 
   def read(file) do
-    File.read!(file)
+    File.read(file)
     |> parse()
   catch
     {:error, _} = error -> error
   end
 
-  defp parse(""), do: {:error, :empty_procfile}
-  defp parse(lines), do: lines |> String.split("\n") |> parse(%{})
+  defp parse({:ok, ""}), do: {:error, :empty_procfile}
+  defp parse({:ok, lines}), do: lines |> String.split("\n") |> parse(%{})
+  defp parse({:error, _} = error), do: error
   defp parse([], commands), do: {:ok, commands}
   defp parse([line | tail], commands), do: parse(tail, line |> parse_line() |> merge(commands))
 
