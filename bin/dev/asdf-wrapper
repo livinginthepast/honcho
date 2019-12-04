@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+test -e "${HOME}/.asdf/asdf.sh" && source "${HOME}/.asdf/asdf.sh"
+
+PATH=$ASDF_DIR/shims:$ASDF_DIR/bin:$PATH $1 ${@:2}
