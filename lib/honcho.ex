@@ -13,6 +13,10 @@ defmodule Honcho do
     |> run(args)
   end
 
-  def run(nil, _), do: Honcho.Output.usage()
-  def run(cmd, args), do: apply(cmd, :run, args)
+  def run({:ok, cmd}, args), do: apply(cmd, :run, args)
+
+  def run({:error, :no_command, cmd}, _) do
+    Honcho.Output.warn("Unable to find subcommand #{inspect(cmd)}")
+    Honcho.Output.usage()
+  end
 end
