@@ -18,7 +18,7 @@ defmodule Honcho.Procfile do
     do: line |> String.split(": ") |> Enum.map(&String.trim/1) |> parse_command()
 
   defp parse_command([name, command]) when byte_size(command) > 0,
-    do: {name, command |> String.split(~r{\s+})}
+    do: {String.to_atom(name), command |> String.split(~r{\s+})}
 
   defp parse_command([""]), do: nil
   defp parse_command(_), do: throw({:error, :malformed_service})

@@ -8,6 +8,8 @@ defmodule Honcho do
   end
 
   def main([cmd | args]) do
+    System.put_env("ERL_CRASH_DUMP_SECONDS", "0")
+
     cmd
     |> Honcho.Subcommand.find()
     |> run(args)

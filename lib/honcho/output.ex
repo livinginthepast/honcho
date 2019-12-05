@@ -13,6 +13,8 @@ defmodule Honcho.Output do
     puts("commands:")
     puts()
     puts("  start - starts processes defined in Procfile")
+    puts("  help  - prints usage info")
+    puts("  info  - prints info about the current Procfile")
   end
 
   def error(string), do: puts(string, :error)

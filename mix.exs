@@ -1,7 +1,7 @@
 defmodule Honcho.MixProject do
   use Mix.Project
 
-  def project do
+  def project() do
     [
       app: :honcho,
       deps: deps(),
@@ -16,15 +16,16 @@ defmodule Honcho.MixProject do
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
-  def application,
+  def application(),
     do: [
+      mod: {Honcho.Application, []},
       extra_applications: [:logger]
     ]
 
-  defp deps,
+  defp deps(),
     do: []
 
-  def escript do
+  def escript() do
     [
       main_module: Honcho,
       name: "honcho",
