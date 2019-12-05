@@ -1,8 +1,9 @@
 defmodule Honcho.MixProject do
   use Mix.Project
 
-  def project() do
-    [
+  def project(),
+    do: [
+      aliases: aliases(),
       app: :honcho,
       deps: deps(),
       elixir: "~> 1.9",
@@ -11,7 +12,6 @@ defmodule Honcho.MixProject do
       start_permanent: Mix.env() == :prod,
       version: "0.1.0"
     ]
-  end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
@@ -25,12 +25,16 @@ defmodule Honcho.MixProject do
   defp deps(),
     do: []
 
-  def escript() do
-    [
+  def escript(),
+    do: [
       main_module: Honcho,
       name: "honcho",
       app: nil,
       path: "./bin/honcho"
     ]
-  end
+
+  defp aliases(),
+    do: [
+      test: "test --no-start"
+    ]
 end

@@ -65,5 +65,17 @@ defmodule Honcho.ProcfileTest do
       |> Procfile.read()
       |> assert_eq({:error, :enoent})
     end
+
+    test "comments are filtered out" do
+      "test/fixtures/procfiles/comments"
+      |> Procfile.read()
+      |> assert_eq(
+        {:ok,
+         %{
+           yo: %Command{cmd: "lo", args: []},
+           slo: %Command{cmd: "mo", args: []}
+         }}
+      )
+    end
   end
 end

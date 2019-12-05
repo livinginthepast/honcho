@@ -14,6 +14,8 @@ defmodule Honcho.Procfile do
   defp parse([], commands), do: {:ok, commands}
   defp parse([line | tail], commands), do: parse(tail, line |> parse_line() |> merge(commands))
 
+  defp parse_line("#" <> _), do: nil
+
   defp parse_line(line),
     do: line |> String.split(": ") |> Enum.map(&String.trim/1) |> parse_command()
 
