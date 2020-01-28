@@ -9,12 +9,11 @@ defmodule Honcho.Subcommand.Info do
   def run(args) when is_list(args),
     do: @default_args |> Keyword.merge(args) |> run()
 
-  def run({:ok, commands}) do
-    commands
-    |> Enum.each(fn {name, command} ->
-      Honcho.Output.puts("#{name}: #{command}")
-    end)
-  end
+  def run({:ok, commands}),
+    do: commands |> Enum.each(&info/1)
 
   def run({:error, _} = error), do: error |> Honcho.Error.parse()
+
+  def info({name, command}),
+    do: Honcho.Output.puts("#{name}: #{command}")
 end

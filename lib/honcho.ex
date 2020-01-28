@@ -3,9 +3,7 @@ defmodule Honcho do
   Entry point for Honcho
   """
 
-  def main([]) do
-    Honcho.Output.usage()
-  end
+  def main([]), do: Honcho.Output.usage()
 
   def main([cmd | args]) do
     System.put_env("ERL_CRASH_DUMP_SECONDS", "0")

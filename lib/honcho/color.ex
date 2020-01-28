@@ -20,17 +20,7 @@ defmodule Honcho.Color do
     |> Enum.join()
   end
 
-  def monochrome(s) do
-    s |> String.replace(~r"\e[\[;0-9]+m", "")
-  end
-
-  def puts(s, color) do
-    s |> colorize(color) |> IO.puts()
-    s
-  end
-
-  def write(s, color) do
-    s |> colorize(color) |> IO.write()
-    s
-  end
+  def monochrome(s), do: s |> String.replace(~r"\e[\[;0-9]+m", "")
+  def puts(s, color), do: s |> colorize(color) |> IO.puts() && s
+  def write(s, color), do: s |> colorize(color) |> IO.write() && s
 end
