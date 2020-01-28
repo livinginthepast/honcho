@@ -1,21 +1,27 @@
 defmodule Honcho.Output do
   alias Honcho.Color
 
+  @usage """
+  honcho <cmd> [options]
+
+  commands:
+
+    start - starts processes defined in Procfile
+    help  - prints usage info
+    info  - prints info about the current Procfile
+
+  options:
+
+    --procfile - path to a procfile
+  """
+
   @colors %{
     error: :red,
     info: :cyan,
     warn: :yellow
   }
 
-  def usage() do
-    puts("honcho <cmd>")
-    puts()
-    puts("commands:")
-    puts()
-    puts("  start - starts processes defined in Procfile")
-    puts("  help  - prints usage info")
-    puts("  info  - prints info about the current Procfile")
-  end
+  def usage(), do: @usage |> puts()
 
   def error(string), do: puts(string, :error)
   def warn(string), do: puts(string, :warn)

@@ -13,17 +13,11 @@ defmodule Honcho.MixProject do
       version: "0.1.0"
     ]
 
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
-
   def application(),
     do: [
       mod: {Honcho.Application, []},
       extra_applications: [:logger]
     ]
-
-  defp deps(),
-    do: []
 
   def escript(),
     do: [
@@ -37,4 +31,10 @@ defmodule Honcho.MixProject do
     do: [
       test: "test --no-start"
     ]
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
+
+  defp deps(),
+    do: []
 end

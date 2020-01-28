@@ -13,7 +13,7 @@ defmodule Honcho.Command do
 
   def init(command) do
     {:ok, command}
-    |> IO.inspect()
+    |> IO.inspect(label: "command")
   end
 end
 

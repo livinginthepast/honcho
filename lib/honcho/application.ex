@@ -3,6 +3,8 @@ defmodule Honcho.Application do
 
   def start(_type, _args) do
     Honcho.Output.warn("starting…")
-    Honcho.CommandSupervisor.start_link()
+
+    Application.get_env(:honcho, :commands)
+    |> Honcho.CommandSupervisor.start_link()
   end
 end

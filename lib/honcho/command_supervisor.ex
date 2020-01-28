@@ -3,13 +3,9 @@ defmodule Honcho.CommandSupervisor do
 
   alias Honcho.Command
 
-  def start_link() do
-    with {:ok, commands} <- find_commands() do
-      System.no_halt(true)
-      Supervisor.start_link(__MODULE__, commands, name: __MODULE__)
-    else
-      {:error, _} = err -> Honcho.Error.parse(err)
-    end
+  def start_link(commands) do
+    System.no_halt(true)
+    Supervisor.start_link(__MODULE__, commands, name: __MODULE__)
   end
 
   #### Callbacks
@@ -28,7 +24,4 @@ defmodule Honcho.CommandSupervisor do
       %{id: name, start: {Command, :start_link, [[name: name, command: command]]}}
     end)
   end
-
-  defp find_commands(file \\ "Procfile")
-  defp find_commands(file) when is_binary(file), do: Honcho.Procfile.read(file)
 end
