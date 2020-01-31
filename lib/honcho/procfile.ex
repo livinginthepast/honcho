@@ -32,7 +32,7 @@ defmodule Honcho.Procfile do
     |> Map.has_key?(name)
     |> case do
       true -> throw({:error, :duplicate_services})
-      false -> commands |> Map.put(name, Command.new(command))
+      false -> commands |> Map.put(name, Command.new(name, command))
     end
   end
 end
