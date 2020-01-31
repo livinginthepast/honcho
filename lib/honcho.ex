@@ -13,6 +13,9 @@ defmodule Honcho do
     |> run(parse_args(args))
   end
 
+  def run(_, {:error, :parse_args, arg}),
+    do: usage("Unknown option: #{arg}")
+
   def run({:ok, cmd}, args), do: apply(cmd, :run, args)
 
   def run({:error, :no_command, cmd}, _),
@@ -29,6 +32,6 @@ defmodule Honcho do
   defp parse_args(argument_list, ["--procfile", procfile | tail]),
     do: parse_args([Keyword.put(argument_list, :procfile, procfile)], tail)
 
-  defp parse_args(_argument_list, [key, value | _]),
-    do: usage("Unknown option: #{key} - #{value}")
+  defp parse_args(_argument_list, [key | _]),
+    do: {:error, :parse_args, key}
 end

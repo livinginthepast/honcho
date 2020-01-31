@@ -7,6 +7,9 @@ defmodule Honcho.Subcommand.Start do
     do: Honcho.Procfile.read(file) |> run()
 
   def run({:ok, commands}),
+    do: Honcho.Command.Init.run(commands) |> run()
+
+  def run({:ok, :init, commands}),
     do: Application.put_env(:honcho, :commands, commands) |> run()
 
   def run(:ok) do
