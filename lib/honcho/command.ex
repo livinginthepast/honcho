@@ -61,6 +61,11 @@ defmodule Honcho.Command do
     {:noreply, state}
   end
 
+  def handle_info({_port, {:data, msg}}, state) do
+    state |> info(msg)
+    {:noreply, state}
+  end
+
   def handle_info({:EXIT, _port, :normal}, state) do
     {:stop, :normal, state}
   end
@@ -69,6 +74,9 @@ defmodule Honcho.Command do
 
   defp error(state, msg),
     do: Output.error("#{now()} [Command:#{state.name}] #{msg}") && state
+
+  defp info(state, msg),
+    do: Output.puts("[Command:#{state.name}] #{String.replace_trailing(msg, "\n", "")}") && state
 
   defp warn(state, msg),
     do: Output.warn("#{now()} [Command:#{state.name}] #{msg}") && state
