@@ -33,8 +33,8 @@ defmodule Honcho.MixProject do
     do: [
       test: "test --no-start",
       "hex.publish": [
-        "git.mix.tasks.git.tags.create",
-        "git.mix.tasks.git.tags.push",
+        "git.tags.create",
+        "git.tags.push",
         "hex.publish"
       ]
     ]
