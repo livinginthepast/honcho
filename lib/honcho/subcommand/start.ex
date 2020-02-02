@@ -13,7 +13,7 @@ defmodule Honcho.Subcommand.Start do
     do: Application.put_env(:honcho, :commands, commands) |> run()
 
   def run(:ok) do
-    with {:ok, _app} <- Application.ensure_all_started(:honcho, :permanent) do
+    with {:ok, _app} <- Application.ensure_all_started(:honcho_supervisor, :permanent) do
       :timer.sleep(:infinity)
     else
       {:error, _} -> System.stop(1)

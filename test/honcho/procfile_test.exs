@@ -20,7 +20,16 @@ defmodule Honcho.ProcfileTest do
     test "can read a single service" do
       "test/fixtures/procfiles/single"
       |> Procfile.read()
-      |> assert_eq({:ok, %{name_of_thing: %Command{cmd: "some", args: ~w{command to run}}}})
+      |> assert_eq(
+        {:ok,
+         %{
+           name_of_thing: %Command{
+             args: ~w{command to run},
+             cmd: "some",
+             name: :name_of_thing
+           }
+         }}
+      )
     end
 
     test "can read a multiple services" do
@@ -29,9 +38,21 @@ defmodule Honcho.ProcfileTest do
       |> assert_eq(
         {:ok,
          %{
-           name_of_thing: %Command{cmd: "some", args: ~w{command to run}},
-           other_thing: %Command{cmd: "command", args: []},
-           third_thing: %Command{cmd: "command", args: ~w{with a long string of arguments}}
+           name_of_thing: %Command{
+             args: ~w{command to run},
+             cmd: "some",
+             name: :name_of_thing
+           },
+           other_thing: %Command{
+             args: [],
+             cmd: "command",
+             name: :other_thing
+           },
+           third_thing: %Command{
+             args: ~w{with a long string of arguments},
+             cmd: "command",
+             name: :third_thing
+           }
          }}
       )
     end
@@ -39,7 +60,16 @@ defmodule Honcho.ProcfileTest do
     test "strips empty lines" do
       "test/fixtures/procfiles/with_line_break"
       |> Procfile.read()
-      |> assert_eq({:ok, %{name_of_thing: %Command{cmd: "some", args: ~w{command to run}}}})
+      |> assert_eq(
+        {:ok,
+         %{
+           name_of_thing: %Command{
+             args: ~w{command to run},
+             cmd: "some",
+             name: :name_of_thing
+           }
+         }}
+      )
     end
 
     test "is an error if a service name is duplicated" do
@@ -72,8 +102,16 @@ defmodule Honcho.ProcfileTest do
       |> assert_eq(
         {:ok,
          %{
-           yo: %Command{cmd: "lo", args: []},
-           slo: %Command{cmd: "mo", args: []}
+           yo: %Command{
+             args: [],
+             cmd: "lo",
+             name: :yo
+           },
+           slo: %Command{
+             args: [],
+             cmd: "mo",
+             name: :slo
+           }
          }}
       )
     end

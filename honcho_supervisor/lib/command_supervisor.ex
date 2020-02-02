@@ -1,4 +1,4 @@
-defmodule Honcho.CommandSupervisor do
+defmodule HonchoSupervisor.CommandSupervisor do
   use Supervisor
 
   alias Honcho.Command
