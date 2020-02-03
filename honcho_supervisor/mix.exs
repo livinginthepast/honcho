@@ -6,10 +6,13 @@ defmodule HonchoSupervisor.MixProject do
       aliases: aliases(),
       app: :honcho_supervisor,
       deps: deps(),
+      description: description(),
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
+      package: package(),
+      source_url: "https://github.com/livinginthepast/honcho",
       start_permanent: Mix.env() == :prod,
-      version: "0.1.0"
+      version: File.read!("../version")
     ]
 
   def application(),
@@ -20,5 +23,13 @@ defmodule HonchoSupervisor.MixProject do
 
   defp aliases(), do: []
   defp elixirc_paths(_), do: ["lib"]
-  defp deps(), do: []
+  defp deps(), do: [{:ex_doc, ">= 0.0.0", only: :dev, runtime: false}]
+  defp description(), do: "Supervision modules used by honcho"
+
+  defp package(),
+    do: [
+      licenses: ["MIT"],
+      maintainers: ["Eric Saxby"],
+      links: %{"GitHub" => "https://github.com/livinginthepast/honcho"}
+    ]
 end
