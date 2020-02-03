@@ -47,7 +47,8 @@ defmodule Honcho.MixProject do
 
   defp deps(),
     do: [
-      {:honcho_supervisor, path: "./honcho_supervisor", runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:honcho_supervisor, "#{@version}", runtime: false}
     ]
 
   defp package(),
