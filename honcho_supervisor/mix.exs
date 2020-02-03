@@ -1,6 +1,8 @@
 defmodule HonchoSupervisor.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project(),
     do: [
       aliases: aliases(),
@@ -12,7 +14,7 @@ defmodule HonchoSupervisor.MixProject do
       package: package(),
       source_url: "https://github.com/livinginthepast/honcho",
       start_permanent: Mix.env() == :prod,
-      version: File.read!("../version")
+      version: @version
     ]
 
   def application(),

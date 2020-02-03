@@ -1,7 +1,7 @@
 defmodule Honcho.MixProject do
   use Mix.Project
 
-  @version File.read!("version")
+  @version "0.1.0"
 
   def project(),
     do: [
