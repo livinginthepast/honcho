@@ -55,6 +55,6 @@ defmodule Honcho.MixProject do
     do: [
       licenses: ["MIT"],
       maintainers: ["Eric Saxby"],
-      links: %{"GitHub" => "https://github.com/livinginthepast/honcho"}
+      links: %{github: "https://github.com/livinginthepast/honcho"}
     ]
 end

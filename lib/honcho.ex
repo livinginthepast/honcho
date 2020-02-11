@@ -10,13 +10,13 @@ defmodule Honcho do
 
     cmd
     |> Honcho.Subcommand.find()
-    |> run(parse_args(args))
+    |> run(Honcho.Args.parse(args))
   end
 
   def run(_, {:error, :parse_args, arg}),
     do: usage("Unknown option: #{arg}")
 
-  def run({:ok, cmd}, args), do: apply(cmd, :run, args)
+  def run({:ok, cmd}, {:ok, args}), do: apply(cmd, :run, args)
 
   def run({:error, :no_command, cmd}, _),
     do: usage("Unable to find subcommand #{inspect(cmd)}")
@@ -25,13 +25,4 @@ defmodule Honcho do
     Honcho.Output.warn(msg)
     Honcho.Output.usage()
   end
-
-  defp parse_args(args), do: parse_args(Keyword.new(), args)
-  defp parse_args(argument_list, []), do: argument_list
-
-  defp parse_args(argument_list, ["--procfile", procfile | tail]),
-    do: parse_args([Keyword.put(argument_list, :procfile, procfile)], tail)
-
-  defp parse_args(_argument_list, [key | _]),
-    do: {:error, :parse_args, key}
 end
