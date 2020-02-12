@@ -13,7 +13,7 @@ defmodule Mix.Tasks.Git.Tags.Push do
       "git",
       "push",
       "origin",
-      "--mix.tasks.git.tags"
+      "--tags"
     ]
   end
 end
