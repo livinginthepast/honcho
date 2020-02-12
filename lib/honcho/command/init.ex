@@ -1,4 +1,6 @@
 defmodule Honcho.Command.Init do
+  @moduledoc false
+
   @wrapper """
   #!/bin/sh
 

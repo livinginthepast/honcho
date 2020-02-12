@@ -1,4 +1,8 @@
 defmodule Honcho.Output do
+  @moduledoc """
+  Provides colorized output.
+  """
+
   alias Honcho.Color
 
   @usage """
@@ -21,11 +25,16 @@ defmodule Honcho.Output do
     warn: :yellow
   }
 
+  @doc "Outputs usage information for running Honcho as an escript"
   def usage(), do: @usage |> puts()
 
+  @doc "Writes an error message"
   def error(string), do: puts(string, :error)
+
+  @doc "Writes a warning message"
   def warn(string), do: puts(string, :warn)
 
+  @doc "Writes an info message"
   def puts(), do: IO.puts("")
   def puts(string), do: puts(string, :info)
   def puts(string, type), do: (string <> "\n") |> write(type)

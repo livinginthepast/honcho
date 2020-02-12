@@ -1,8 +1,9 @@
 defmodule Honcho do
   @moduledoc """
-  Entry point for Honcho
+  Entry point for Honcho.
   """
 
+  @doc "Entry point for running Honcho as an escript"
   def main([]), do: Honcho.Output.usage()
 
   def main([cmd | args]) do
@@ -13,6 +14,7 @@ defmodule Honcho do
     |> run(Honcho.Args.parse(args))
   end
 
+  @doc "Runs a subcommand module"
   def run(_, {:error, :parse_args, arg}),
     do: usage("Unknown option: #{arg}")
 

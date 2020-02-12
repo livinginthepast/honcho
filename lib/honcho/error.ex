@@ -1,4 +1,6 @@
 defmodule Honcho.Error do
+  @moduledoc false
+
   def parse(error) do
     puts(error)
     error

@@ -1,7 +1,13 @@
 defmodule Honcho.Procfile do
+  @moduledoc """
+  Facility for reading a Procfile.
+  """
+
   alias Honcho.Command
 
-  def read(file) do
+  @spec read(String.t()) :: {:ok, List.t()} | {:error, atom()}
+  @doc "Reads a Procfile given by a relative or absolute path"
+  def(read(file)) do
     File.read(file)
     |> parse()
   catch

@@ -1,4 +1,5 @@
 defmodule Honcho.Command do
+  @moduledoc false
   use GenServer
 
   alias Honcho.Command.Helpers

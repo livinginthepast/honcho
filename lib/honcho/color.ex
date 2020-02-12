@@ -1,4 +1,6 @@
 defmodule Honcho.Color do
+  @moduledoc false
+
   @colors %{
     black: 0,
     blue: 4,

@@ -1,6 +1,12 @@
 defmodule Honcho.Subcommand.Start do
+  @moduledoc """
+  Starts the processes in a given Procfile.
+  """
+
+  @behaviour Honcho.Subcommand
   @default_args [procfile: "Procfile"]
 
+  @impl Honcho.Subcommand
   def run(args \\ @default_args)
 
   def run([{:procfile, file} | _]) when is_binary(file),
