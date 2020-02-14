@@ -7,6 +7,7 @@ A process manager for your `Procfile`(s).
 Install the Honcho archive into your Elixir:
 
 ```shell
+mix archive.install hex honcho_supervisor
 mix archive.install hex honcho
 ```
 
