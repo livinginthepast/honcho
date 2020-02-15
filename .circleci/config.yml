@@ -1,0 +1,47 @@
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    docker:
+      - image: circleci/elixir:1.10.0-node-browsers
+        environment:
+          MIX_ENV: test
+
+    working_directory: ~/app
+
+    steps:
+      - checkout
+
+      - run: elixir -v
+      - run: mix local.hex --force
+      - run: mix local.rebar --force
+
+      - restore_cache:
+          key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}-{{ arch }}
+      - restore_cache:
+          key: v1-build-cache-{{ .Branch }}-{{ checksum "mix.lock" }}-{{ arch }}
+
+      - run: mix do deps.get, deps.compile
+
+      - save_cache:
+          key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}-{{ arch }}
+          paths: "deps"
+      - save_cache:
+          key: v1-build-cache-{{ .Branch }}-{{ checksum "mix.lock" }}-{{ arch }}
+          paths: "_build"
+
+      - run:
+          name: Check for compile warnings
+          command: |
+            mix compile --force --warnings-as-errors || (mix clean && false)
+
+      - run: mix test
+
+      - store_test_results:
+          path: _build/results.xml
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
