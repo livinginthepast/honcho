@@ -1,7 +1,7 @@
 defmodule Honcho.MixProject do
   use Mix.Project
 
-  @version "0.2.1"
+  @version "0.2.2"
 
   def project(),
     do: [
@@ -33,8 +33,8 @@ defmodule Honcho.MixProject do
     do: [
       test: "test --no-start",
       "hex.publish": [
-        "git.tags.create",
-        "git.tags.push",
+        "honcho.tags.create",
+        "honcho.tags.push",
         "hex.publish"
       ]
     ]

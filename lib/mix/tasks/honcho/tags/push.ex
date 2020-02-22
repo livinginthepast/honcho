@@ -1,9 +1,9 @@
-defmodule Mix.Tasks.Git.Tags.Push do
+defmodule Mix.Tasks.Honcho.Tags.Push do
   @moduledoc false
 
   use Mix.Task
 
-  @shortdoc "Pushes all git tags"
+  @shortdoc false
   def run([]) do
     Mix.Shell.IO.cmd(command() |> Enum.join(" "))
   end

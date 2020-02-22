@@ -2,6 +2,7 @@ defmodule Honcho.Command do
   @moduledoc false
   use GenServer
 
+  import Honcho.Output, only: [now: 0]
   alias Honcho.Command.Helpers
   alias Honcho.Output
 
@@ -81,8 +82,6 @@ defmodule Honcho.Command do
 
   defp warn(state, msg),
     do: Output.warn("#{now()} [Command:#{state.name}] #{msg}") && state
-
-  defp now(), do: DateTime.utc_now() |> DateTime.to_iso8601()
 end
 
 defimpl String.Chars, for: Honcho.Command do

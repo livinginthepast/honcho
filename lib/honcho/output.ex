@@ -34,6 +34,8 @@ defmodule Honcho.Output do
   @doc "Writes a warning message"
   def warn(string), do: puts(string, :warn)
 
+  def now(), do: DateTime.utc_now() |> DateTime.to_iso8601()
+
   @doc "Writes an info message"
   def puts(), do: IO.puts("")
   def puts(string), do: puts(string, :info)

@@ -1,9 +1,9 @@
-defmodule Mix.Tasks.Git.Tags.Create do
+defmodule Mix.Tasks.Honcho.Tags.Create do
   @moduledoc false
 
   use Mix.Task
 
-  @shortdoc "Creates a git tag"
+  @shortdoc false
   def run([]) do
     Mix.Task.run("app.start", [])
 
