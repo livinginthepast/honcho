@@ -50,7 +50,9 @@ defmodule Honcho.Command do
     {:ok, state}
   end
 
-  def terminate(_msg, _state), do: :ok
+  def terminate(_msg, _state) do
+    :ok
+  end
 
   def handle_info({_port, {:exit_status, 0}}, state) do
     state |> warn("exited with status 0")
@@ -74,14 +76,20 @@ defmodule Honcho.Command do
 
   ### Private
 
-  defp error(state, msg),
-    do: Output.error("#{now()} [Command:#{state.name}] #{msg}") && state
+  defp error(state, msg) do
+    Output.error("#{now()} [Command:#{state.name}] #{msg}")
+    state
+  end
 
-  defp info(state, msg),
-    do: Output.puts("[Command:#{state.name}] #{String.replace_trailing(msg, "\n", "")}") && state
+  defp info(state, msg) do
+    Output.puts("[Command:#{state.name}] #{String.replace_trailing(msg, "\n", "")}")
+    state
+  end
 
-  defp warn(state, msg),
-    do: Output.warn("#{now()} [Command:#{state.name}] #{msg}") && state
+  defp warn(state, msg) do
+    Output.warn("#{now()} [Command:#{state.name}] #{msg}")
+    state
+  end
 end
 
 defimpl String.Chars, for: Honcho.Command do

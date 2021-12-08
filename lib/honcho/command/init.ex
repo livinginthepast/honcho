@@ -37,7 +37,7 @@ defmodule Honcho.Command.Init do
     file = Path.join(path, "wrapper")
 
     with :ok <- File.mkdir_p(path),
-         :ok <- File.write(file, @wrapper, ~w{write }a),
+         :ok <- File.write(file, @wrapper, ~w{write}a),
          :ok <- File.chmod(file, 0o755) do
       {:ok, :init, commands}
     else

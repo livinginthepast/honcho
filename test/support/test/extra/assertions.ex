@@ -1,4 +1,5 @@
 defmodule Honcho.Test.Extra.Assertions do
+  @moduledoc false
   import ExUnit.Assertions
 
   def assert_eq(left, right, opts \\ [])

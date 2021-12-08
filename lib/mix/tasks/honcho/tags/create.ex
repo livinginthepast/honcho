@@ -1,9 +1,9 @@
 defmodule Mix.Tasks.Honcho.Tags.Create do
+  @shortdoc false
   @moduledoc false
 
   use Mix.Task
 
-  @shortdoc false
   def run([]) do
     Mix.Task.run("app.start", [])
 
@@ -24,11 +24,11 @@ defmodule Mix.Tasks.Honcho.Tags.Create do
     ]
   end
 
-  defp description() do
+  defp description do
     Mix.Shell.IO.prompt("Please enter a tag message:")
   end
 
-  defp tag() do
+  defp tag do
     {:ok, version} = :application.get_key(:honcho, :vsn)
     "v#{version}"
   end

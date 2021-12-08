@@ -1,4 +1,5 @@
 defmodule Honcho.SimpleCase do
+  @moduledoc false
   use ExUnit.CaseTemplate
 
   using do

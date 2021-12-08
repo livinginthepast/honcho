@@ -2,12 +2,11 @@ defmodule Honcho.Subcommand.Start do
   @moduledoc """
   Starts the processes in a given Procfile.
   """
-
-  @version Mix.Project.config()[:version]
+  @behaviour Honcho.Subcommand
 
   import Honcho.Output, only: [now: 0]
 
-  @behaviour Honcho.Subcommand
+  @version Mix.Project.config()[:version]
   @default_args [procfile: "Procfile"]
 
   @impl Honcho.Subcommand
@@ -28,14 +27,13 @@ defmodule Honcho.Subcommand.Start do
   def run(:ok) do
     Honcho.Output.warn("#{now()} [Honcho v#{version()}] ...")
 
-    with {:ok, _app} <- Application.ensure_all_started(:honcho_supervisor, :permanent) do
-      :timer.sleep(:infinity)
-    else
+    case Application.ensure_all_started(:honcho_supervisor, :permanent) do
+      {:ok, _app} -> :timer.sleep(:infinity)
       {:error, _} -> System.stop(1)
     end
   end
 
   def run({:error, _} = error), do: Honcho.Error.parse(error)
 
-  defp version(), do: @version
+  defp version, do: @version
 end

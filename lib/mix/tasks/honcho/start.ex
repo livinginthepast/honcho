@@ -1,9 +1,5 @@
 defmodule Mix.Tasks.Honcho.Start do
-  use Mix.Task
-
   @shortdoc "Provides info about the current Procfile"
-  @recursive true
-
   @moduledoc """
   Starts processes defined in a Procfile.
 
@@ -18,6 +14,9 @@ defmodule Mix.Tasks.Honcho.Start do
 
     * `-p, --procfile` - indicates a path to a specific file.
   """
+  use Mix.Task
+
+  @recursive true
 
   @impl Mix.Task
   def run(args) when is_list(args) do
