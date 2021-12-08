@@ -36,7 +36,12 @@ defmodule Honcho.Command do
             :binary,
             :use_stdio,
             :exit_status,
-            args: [command.cmd | command.args]
+            args: [command.cmd | command.args],
+            env: [
+              {'HOME', to_charlist(System.get_env("HOME"))},
+              {'PWD', to_charlist(System.get_env("PWD"))},
+              {'USER', to_charlist(System.get_env("USER"))}
+            ]
           ])
     }
     |> init()
