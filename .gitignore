@@ -1,7 +1,9 @@
-_build/
 *.ez
+.medic/.doctor.out
+.medic/skipped
 /.fetch
 /cover/
+_build/
 bin/honcho
 deps/
 doc/
