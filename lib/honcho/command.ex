@@ -38,9 +38,9 @@ defmodule Honcho.Command do
             :exit_status,
             args: [command.cmd | command.args],
             env: [
-              {'HOME', to_charlist(System.get_env("HOME"))},
-              {'PWD', to_charlist(System.get_env("PWD"))},
-              {'USER', to_charlist(System.get_env("USER"))}
+              {~c'HOME', to_charlist(System.get_env("HOME"))},
+              {~c'PWD', to_charlist(System.get_env("PWD"))},
+              {~c'USER', to_charlist(System.get_env("USER"))}
             ]
           ])
     }
