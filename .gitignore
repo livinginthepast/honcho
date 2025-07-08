@@ -3,6 +3,7 @@
 .medic/skipped
 /.fetch
 /cover/
+Brewfile.lock.json
 _build/
 bin/honcho
 deps/
