@@ -15,19 +15,19 @@ jobs:
     env:
       MIX_ENV: test
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
           elixir-version: "1.18.4"
           otp-version: "28.0.1"
       - name: Cache deps
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: deps
           key: ${{ runner.os }}-deps-v1-${{ hashFiles('**/mix.lock', '.tool-versions') }}
       - name: Cache _build
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: _build
           key: ${{ runner.os }}-build-v1-${{ hashFiles('**/mix.lock', '.tool-versions') }}
@@ -44,19 +44,19 @@ jobs:
     env:
       MIX_ENV: test
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
           elixir-version: "1.18.4"
           otp-version: "28.0.1"
       - name: Cache deps
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: deps
           key: ${{ runner.os }}-deps-v1-${{ hashFiles('**/mix.lock', '.tool-versions') }}
       - name: Cache _build
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: _build
           key: ${{ runner.os }}-build-v1-${{ hashFiles('**/mix.lock', '.tool-versions') }}
@@ -76,24 +76,24 @@ jobs:
     env:
       MIX_ENV: test
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
           elixir-version: "1.18.4"
           otp-version: "28.0.1"
       - name: Cache deps
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: deps
           key: ${{ runner.os }}-deps-v1-${{ hashFiles('**/mix.lock', '.tool-versions') }}
       - name: Cache _build
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: _build
           key: ${{ runner.os }}-build-v1-${{ hashFiles('**/mix.lock', '.tool-versions') }}
       - name: Cache PLTs
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: priv/plts
           key: ${{ runner.os }}-dialyxir-v1-${{ hashFiles('**/mix.lock', '.tool-versions') }}
@@ -114,14 +114,14 @@ jobs:
       - linter
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
           elixir-version: "1.18.4"
           otp-version: "28.0.1"
       - name: Cache deps
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: deps
           key: ${{ runner.os }}-deps-v1-${{ hashFiles('**/mix.lock', '.tool-versions') }}
