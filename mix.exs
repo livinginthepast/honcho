@@ -33,12 +33,7 @@ defmodule Honcho.MixProject do
 
   defp aliases(),
     do: [
-      test: "test --no-start",
-      "hex.publish": [
-        "honcho.tags.create",
-        "honcho.tags.push",
-        "hex.publish"
-      ]
+      test: "test --no-start"
     ]
 
   defp description(),
