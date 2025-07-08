@@ -126,13 +126,13 @@ jobs:
           path: deps
           key: ${{ runner.os }}-deps-v1-${{ hashFiles('**/mix.lock', '.tool-versions') }}
       - name: Publish Honcho Supervisor
-        uses: ./.github/publish
+        uses: synchronal/hex-publish-action@v3
         with:
           name: honcho_supervisor
           working-directory: honcho_supervisor
           key: ${{ secrets.HEX_PM_KEY }}
-      - name: Publish Honcho
-        uses: ./.github/publish
+      - name: Publish to Hex
+        uses: synchronal/hex-publish-action@v3
         with:
           name: honcho
           key: ${{ secrets.HEX_PM_KEY }}
