@@ -1,7 +1,7 @@
 defmodule Honcho.MixProject do
   use Mix.Project
 
-  @version "0.2.3"
+  @version "0.2.4"
 
   def project(),
     do: [
@@ -52,7 +52,7 @@ defmodule Honcho.MixProject do
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:honcho_supervisor, "#{@version}", runtime: false},
+      {:honcho_supervisor, "> 0.0.0", runtime: false},
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false}
     ]
 
