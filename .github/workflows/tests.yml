@@ -136,3 +136,4 @@ jobs:
         with:
           name: honcho
           key: ${{ secrets.HEX_PM_KEY }}
+          tag-release: false
