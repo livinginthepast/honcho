@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       MIX_ENV: test
     steps:
@@ -40,7 +40,7 @@ jobs:
   test:
     name: Test
     needs: build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       MIX_ENV: test
     steps:
@@ -72,7 +72,7 @@ jobs:
   linter:
     name: Credo + Dialyxir
     needs: build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       MIX_ENV: test
     steps:
@@ -112,7 +112,7 @@ jobs:
     needs:
       - test
       - linter
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up Elixir
